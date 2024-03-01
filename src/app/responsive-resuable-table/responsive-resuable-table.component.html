@@ -1,0 +1,22 @@
+<table>
+    <thead>
+        <tr>
+            <ng-container *ngTemplateOutlet="headers || defaultHeaderTemplate;
+        context: { $implicit: dataSource }"></ng-container>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let row of dataSource">
+            <ng-container *ngTemplateOutlet="rows || defaultRowTemplate; context: { $implicit: row }"></ng-container>
+        </tr>
+    </tbody>
+</table>
+
+<!--If no template is provided use keys as headers and display all values -->
+<ng-template #defaultHeaderTemplate let-data>
+    <th *ngFor="let header of tHeaders">{{header | titlecase}}</th>
+</ng-template>
+
+<ng-template #defaultRowTemplate let-row>
+    <td *ngFor="let header of tHeaders" [attr.data-before]="[header | titlecase]">{{row[header]}}</td>
+</ng-template>

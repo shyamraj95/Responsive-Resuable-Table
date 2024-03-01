@@ -1,0 +1,28 @@
+<app-responsive-resuable-table [dataSource]="dataSource">
+</app-responsive-resuable-table>
+
+<br>
+<app-responsive-resuable-table [dataSource]="dataSource" [customHeader]="headers">
+</app-responsive-resuable-table>
+<br>
+<app-responsive-resuable-table [dataSource]="dataSource">
+    <ng-template #headers>
+        <th>Id</th>
+        <th>Name</th>
+        <th>Weight</th>
+        <th>Symbol</th>
+        <th>Action</th>
+    </ng-template>
+    <ng-template #rows let-row>
+        <td [attr.data-before]="['Id']">{{ row.position }}</td>
+        <td [attr.data-before]="['Name']">{{ row.name | titlecase }}</td>
+        <td [attr.data-before]="['Weight']">{{ row.weight }}</td>
+        <td [attr.data-before]="['Symbol']">{{ row.symbol }}</td>
+        <td [attr.data-before]="['Action']">
+            <button mat-icon-button (click)="methodName(row.position)">
+                <mat-icon>open_in_new</mat-icon>
+            </button>
+        </td>
+    </ng-template>
+</app-responsive-resuable-table>
+<br>
